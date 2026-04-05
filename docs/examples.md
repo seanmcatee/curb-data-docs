@@ -116,6 +116,42 @@ to 30 minutes. This sign can be represented by one policy with a single rule:
     commercial vehicles during the designated `time_spans` implies that other vehicles
     cannot park in zones covered by this sign.
 
+### 2-Hour Non-Resident Parking with Resident Exception
+
+This next example addresses a 2-hour limit on parking, where area residents displaying 
+a residential parking permit are not subject to the time limitation. This sign can be 
+represented by one policy with a single rule:
+
+- 2-hour limit except residents, 6 PM to 10 AM Mon-Fri
+
+![2-hour parking except for South Boston residents](images/south-boston-permit.png)
+
+
+??? tip "Detailed Policy JSON"
+    ```json
+    {
+      "name": "2-hour limit except residents, 6 PM to 10 AM Mon-Fri",
+      "priority": 40,
+      "rules": [
+        { "activity": "parking", "user_classes": ["resident_permit"] },
+
+        {
+          "activity": "parking",
+          "max_stay": 2,
+          "max_stay_unit": "hour",
+          "user_classes_except": ["resident_permit"]
+        }
+      ],
+      "time_spans": [
+        {
+          "time_of_day_start": "18:00",
+          "time_of_day_end": "10:00",
+          "days_of_week": ["mon", "tue", "wed", "thu", "fri"]
+        }
+      ]
+    }
+    ```
+
 ## Combined Zone Examples
 
 ### Snow Zone with Street Cleaning
