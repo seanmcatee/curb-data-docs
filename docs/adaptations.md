@@ -120,6 +120,16 @@ all vehicle classes.
 
 The remainder of this document relies on these assumptions.
 
+## Loading Activity
+
+The list of activities includes both `loading` and `unloading`, and defines these activities 
+as loading or unloading of goods, respectively. The distinction is unnecessary given parking 
+regulations in Boston, as is the restriction of `loading` to apply only to goods. Therefore, 
+we have modified `loading` to be defined as follows:
+
+> loading and/or unloading of goods or people; implies that stopping is also permitted.
+
+
 ## Enumerated Values
 
 CDS includes well known values for User Classes and for Purposes. Our implementation

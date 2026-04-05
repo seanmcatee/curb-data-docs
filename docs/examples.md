@@ -152,6 +152,44 @@ represented by one policy with a single rule:
     }
     ```
 
+### Pick-up/Drop Off or Delivery
+
+The sign below limits curb activities to pick-up/drop off and deliveries. For the Boston 
+implementation of CDS, we are using the assertion that the activity `loading` allows loading 
+and unloading of both people and goods. With this assumption, this sign can be represented
+by this simple policy with one rule:
+
+- Loading allowed, max stay 15 minutes, 8 AM to 10 PM except Sunday.
+
+![Pick-up/Drop off & Delivery Only Except Sunday, 8 AM to 10 PM](images/pudo-and-delivery.png)
+
+??? tip "Detailed Policy JSON"
+    ```json
+    {
+      "name": "Loading allowed, max stay 15 minutes, 8 AM to 10 PM except Sunday",
+      "priority": 80,
+      "rules": [
+        {
+          "activity": "loading",
+          "max_stay": 15,
+          "max_stay_unit": "minute"
+        }
+      ],
+      "time_spans": [
+        {
+          "time_of_day_start": "08:00",
+          "time_of_day_end": "22:00",
+          "days_of_week": ["mon", "tue", "wed", "thu", "fri", "sat"]
+        }
+      ]
+    }
+    ```
+
+!!! warning "Implied Prohibition"
+    This policy example relies on implied prohibition. Allowance of loading 
+    during the designated `time_spans` implies that vehicles
+    cannot perform other activities such as park.
+
 ## Combined Zone Examples
 
 ### Snow Zone with Street Cleaning
