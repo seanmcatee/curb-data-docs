@@ -116,7 +116,7 @@ to 30 minutes. This sign can be represented by one policy with a single rule:
     commercial vehicles during the designated `time_spans` implies that other vehicles
     cannot park in zones covered by this sign.
 
-### 2-Hour Non-Resident Parking with Resident Exception
+### 2-Hour Parking with Resident Exception
 
 This next example addresses a 2-hour limit on parking, where area residents displaying 
 a residential parking permit are not subject to the time limitation. This sign can be 
@@ -152,7 +152,7 @@ represented by one policy with a single rule:
     }
     ```
 
-### Pick-up/Drop Off or Delivery
+### Pick-up/Drop Off and Delivery
 
 The sign below limits curb activities to pick-up/drop off and deliveries. For the Boston 
 implementation of CDS, we are using the assertion that the activity `loading` allows loading 
@@ -190,7 +190,10 @@ by this simple policy with one rule:
     during the designated `time_spans` implies that vehicles
     cannot perform other activities such as park.
 
-## Combined Zone Examples
+## Zone Examples
+
+Each zone served by the CDS API will contain one or more policies that represent 
+regulations on a particular curb segment. Examples of complete policy lists follow.
 
 ### Snow Zone with Street Cleaning
 
