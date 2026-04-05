@@ -85,7 +85,7 @@ to 30 minutes. This sign can be represented by one policy with a single rule:
     ```json
     {
       "name":"Parking allowed for commercial vehicles, 7 AM to 7 PM, all days except Sunday",
-      "priority":40,
+      "priority": 40,
       "rules": [
         {
           "activity": "parking",
@@ -149,7 +149,7 @@ this sign is as follows, listed with the most important policy first:
           {
             "time_of_day_start": "00:01",
             "time_of_day_end": "07:00",
-            "days_of_week": ["tue"],
+            "days_of_week": ["tue"]
           }
         ]
       },
@@ -191,7 +191,8 @@ following policies:
         "time_spans": [
           {
             "time_of_day_start": "00:01",
-            "time_of_day_end": "07:00"
+            "time_of_day_end": "07:00",
+            "days_of_week": ["tue"]
           }
         ]
       },
@@ -299,7 +300,7 @@ below.
       },
       {
         "name": "Loading allowed for all vehicles from 7 AM to 4 PM, 30 minute max",
-        "priority": 40,
+        "priority": 80,
         "rules": [
           { "activity": "loading", "max_stay": 30, "max_stay_unit": "minute" }
         ],

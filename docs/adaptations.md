@@ -16,7 +16,7 @@ This is accomplished through automated
 interpretation of sign images and conversion of these images to one or more
 **policy** objects that represent rules on a sign.
 
-To fully define activities on each curb, we use catchall policy:
+To fully define activities on each curb, we use a catchall policy:
 
 1. A no stopping anytime policy, applied in cases where a blockface has been
 marked through other means such as lane marking analysis to be a travel lane.
@@ -26,10 +26,11 @@ than the no stopping policy.
 These policies are prioritized in a manner consistent with the [prioritization 
 approach](priorities.md). Of note, the unrestricted parking policy is assigned a specific 
 priority value of 99.
+
 ## Implicit Exclusion
 
-The CDS spec is somewhat vague on the necessity of explicit prohibitions, such
-as if an allowance with limited scope implicitly prohibits users
+The CDS spec is unclear on the necessity of explicit prohibitions, such
+as if an allowance with limited scope implicitly prohibits users and activities
 outside of that scope from using a curb zone. For example, a
 policy that allows 30-minute commercial vehicle parking only between 6:00 and 10:00 am
 and allows unrestricted parking at other times might be
@@ -57,7 +58,7 @@ represented by the example below:
   },
   {
     "name": "Unrestricted parking",
-    "priority": 999,
+    "priority": 99,
     "rules": [
       {
         "activity": "parking"
@@ -83,7 +84,7 @@ parking by non-commercial vehicles during the specified timeframe.
         "user_classes": ["commercial_vehicle"]
       },
       {
-        "activity": "no_parking",
+        "activity": "no parking",
         "user_classes_except": ["commercial_vehicle"]
       }
     ],
@@ -96,7 +97,7 @@ parking by non-commercial vehicles during the specified timeframe.
   },
   {
     "name": "Unrestricted parking",
-    "priority": 999,
+    "priority": 99,
     "rules": [{ "activity": "parking" }]
   }
 ]
@@ -104,6 +105,17 @@ parking by non-commercial vehicles during the specified timeframe.
 ```
 
 For the purposes of Boston's curb inventory, we have asserted that the first
-example is sufficient and that by declaring a use allowable for certain vehicle 
-classes, that use is implicitly prohibited for all other vehicle classes. 
-The remainder of this document relies on this assumption.
+example is sufficient and that by:
+
+1. Declaring a use allowable for certain vehicle classes, that use is implicitly prohibited 
+for all other vehicle classes, and 
+2. Declaring a use allowable for all vehicle classes, other uses are implicitly prohibited for 
+all vehicle classes.
+
+!!! info "Definitions"
+    In the assumptions above, **use** means any activity, purpose, or combination thereof. 
+
+    Activities follow the hierarchy defined in CDS. For example, the `parking` activity 
+    includes allowance of stopping and loading.
+
+The remainder of this document relies on these assumptions.
