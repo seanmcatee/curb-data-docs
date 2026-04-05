@@ -16,7 +16,7 @@ This is accomplished through automated
 interpretation of sign images and conversion of these images to one or more
 **policy** objects that represent rules on a sign.
 
-To fully define activities on each curb, we use a catchall policy:
+To fully define activities on each curb, we use a pair of catchall policies:
 
 1. A no stopping anytime policy, applied in cases where a blockface has been
 marked through other means such as lane marking analysis to be a travel lane.
@@ -119,3 +119,55 @@ all vehicle classes.
     includes allowance of stopping and loading.
 
 The remainder of this document relies on these assumptions.
+
+## Enumerated Values
+
+CDS includes well known values for User Classes and for Purposes. Our implementation
+is deliberately limited to the values described below.
+
+### User Classes
+
+CDS defines `user_class` field as using the **AND** operator. We've created
+a set of values different from the well known values included in the CDS
+specification that is more applicable to Boston parking regulations
+encountered in this process. This list includes:
+
+- Vehicle Types
+    - bicycle
+    - bus
+    - car
+    - motorcycle
+    - truck
+- Vehicle Properties
+    - accessible
+    - electric
+
+- Additional Values (not well known values listed in CDS)
+    - commercial_vehicle
+    - resident_permit
+    - rideshare
+    - valet
+
+
+Additional `user_class` values may be added as they are encountered in the
+dataset.
+
+
+### Purposes
+
+This project is minimizing the `purpose` field, which is specified as
+using an **OR** operator. The values of purpose encountered so far include:
+
+- emergency_use
+- pickup_dropoff (not a CDS well known value)
+
+Examples of use cases where `purpose` is important include:
+
+- School zone pick-up and drop-off only, usually time-limited.
+- Zones reserved for emergency ambulance use.
+
+Purpose is not used to describe allowable activities that are the reason for a
+no-parking regulation, such as street sweeping or temporary construction access.
+
+Additional `purpose` values may be added as they are encountered in the
+dataset.
