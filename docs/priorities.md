@@ -11,35 +11,18 @@ categorized policies into blocks of 10 to leave some space for expansion
 and adjustment.
 
 
-- 1-9: **Blanket Prohibitions** include all blanket prohibitions of activities, including 
-`no stopping`, `no loading`, and `no parking` prioritized as `1`, `2`, and
-`3`, respectively. Blanket prohibitions apply to all user classes, purposes, and `time_spans`.
-
-- 10-19: **Temporary Allowances** include regulations with a start and stop date. 
-- 20-29: **Temporary Prohibitions** include regulations with a start and stop date. 
-
-- 30-39: **Time-specific General Prohibitions** that apply to all users such as Snow Emergency, or days and times 
-when parking is prohibited to allow street cleaning.
-    - Block 30-34 is used for designated periods such as Snow Emergency.
-    - Block 35-39 is used for other `time_spans`.
-
-- 40-49: **User- and time-specific allowances** that target one or more specific `user_class` or 
-`purpose`  and that are also only in effect for specified `time_spans`.
-
-- 50-59: **User- and time-specific prohibitions** that target one or more specific `user_class` or 
-`purpose`  and that are also only in effect for specified `time_spans`.
-
-- 60-69: **User-specific allowances** that target one or more user_class or purpose but are 
-not limited to specific `time_spans`.
-
-- 70-79: **User-specific prohibitions** that target one or more user_class or purpose but are
-not limited to specific `time_spans`.
-
-- 80-89: **Time-specific General Allowances** that are in effect only for specific `time_spans`, but 
-that do not target a specific user_class or purpose.
-
-- 90-99: Blanket allowances that apply to all users during all `time_spans`. The catchall 
-unrestricted parking allowance that allows parking for all vehicles and `time_spans` uses a priority value of 99.
+| Priority | Category | Description |
+|----------|----------|-------------|
+| 1-9 | **Blanket Prohibitions** | All blanket prohibitions of activities, including `no stopping`, `no loading`, and `no parking` prioritized as `1`, `2`, and `3`, respectively. Blanket prohibitions apply to all user classes, purposes, and `time_spans`. |
+| 10-19 | **Temporary Allowances** | Allowances with a start and stop date. |
+| 20-29 | **Temporary Prohibitions** | Prohibitions with a start and stop date. |
+| 30-39 | **Time-specific General Prohibitions** | Prohibitions that apply to all users such as Snow Emergencies, or days and times when parking is prohibited to allow street cleaning. <br><br>Block 30-34 is used for designated periods such as Snow Emergency; block 35-39 is used for other `time_spans`. |
+| 40-49 | **User- and time-specific allowances** | Target one or more specific `user_class` or `purpose` and are also only in effect for specified `time_spans`. |
+| 50-59 | **User- and time-specific prohibitions** | Target one or more specific `user_class` or `purpose` and are also only in effect for specified `time_spans`. |
+| 60-69 | **User-specific allowances** | Target one or more `user_class` or `purpose` but are not limited to specific `time_spans`. |
+| 70-79 | **User-specific prohibitions** | Target one or more `user_class` or `purpose` but are not limited to specific `time_spans`. |
+| 80-89 | **Time-specific General Allowances** | In effect only for specific `time_spans`, but do not target a specific `user_class` or `purpose`. |
+| 90-99 | **Blanket Allowances** | Apply to all users during all `time_spans`. The catchall unrestricted parking allowance that allows parking for all vehicles and `time_spans` uses a priority value of `99`. |
 
 
 !!! warning "Temporary Parking"
@@ -48,5 +31,5 @@ unrestricted parking allowance that allows parking for all vehicles and `time_sp
 
 !!! warning "Implicit Exclusions"
     Use of implicit exclusion may result in few or no instances of time- and/or 
-    user-specific policies, and interactions between allowances and prohibitions 
+    user-specific prohibitions, and interactions between allowances and prohibitions 
     has not been tested without the implicit exclusion assumption.
