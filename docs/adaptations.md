@@ -23,9 +23,9 @@ marked through other means such as lane marking analysis to be a travel lane.
 2. An unrestricted parking policy, applied in all cases but at a lower priority 
 than the no stopping policy. 
 
-To reserve room for further priority refinement, these catchall polices are 
-assigned priorities 998 and 999 respectively. Because this document addresses 
-policies for curbs with non-travel activities, the no catchall no stopping 
+To reserve room for further priority refinement, these catchall policies are
+assigned priorities 998 and 999 respectively. Because this document addresses
+policies for curbs with non-travel activities, the catchall no stopping
 policy is not further explored.
 
 ## Implicit Exclusion
@@ -34,7 +34,7 @@ The CDS spec is somewhat vague on the necessity of explicit prohibitions, such
 as if an allowance with limited scope implicitly prohibits users
 outside of that scope from using a curb zone. For example, a
 policy that allows 30-minute commercial vehicle parking only between 6:00 and 10:00 am
-and allows unrestricted parking at other times am might be 
+and allows unrestricted parking at other times might be
 represented by the example below:
 
 ```json

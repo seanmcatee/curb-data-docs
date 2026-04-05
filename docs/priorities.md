@@ -11,7 +11,7 @@ categorized policies into blocks of 10 to leave some space for expansion
 and adjustment.
 
 
-- 1-9: **Blanket Prohibitions** includes all blanket prohibitions of activities, including 
+- 1-9: **Blanket Prohibitions** include all blanket prohibitions of activities, including 
 `no_stopping`, `no_loading`, and `no_parking` prioritized as `1`, `2`, and 
 `3`, respectively. Blanket prohibitions apply to all user classes, purposes, and time spans.
 
@@ -30,13 +30,13 @@ when parking is prohibited to allow street cleaning.
 - 60-69: **User-specific allowances** that target one or more user_class or purpose but are 
 not limited to a specific timespan.
 
-- 60-69: **User-specific prohibitions ** that target one or more user_class or purpose but are 
+- 60-69: **User-specific prohibitions** that target one or more user_class or purpose but are
 not limited to a specific timespan.
 
 - 70-79: **Time-specific General Allowances** that are in effect only for a specific time, but 
 that do not target a specific user_class or purpose.
 
-- 80 - 89: Blanket allowances that apply do all users during all timespans. (excludes 
+- 80-89: Blanket allowances that apply to all users during all timespans. (excludes 
 catchall unrestricted parking.)
 
 - 99: Catchall unrestricted parking allowance that allows parking for all vehicles and time 
