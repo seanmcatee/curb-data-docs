@@ -12,7 +12,7 @@ and adjustment.
 
 
 - 1-9: **Blanket Prohibitions** include all blanket prohibitions of activities, including 
-`no_stopping`, `no_loading`, and `no_parking` prioritized as `1`, `2`, and 
+`no stopping`, `no loading`, and `no parking` prioritized as `1`, `2`, and
 `3`, respectively. Blanket prohibitions apply to all user classes, purposes, and time spans.
 
 - 10-19: **Temporary Allowances** include regulations with a start and stop date. 

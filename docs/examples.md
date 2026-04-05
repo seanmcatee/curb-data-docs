@@ -112,7 +112,7 @@ to 30 minutes. This sign can be represented by one policy with a single rule:
 
 !!! warning "Implied Prohibition"
     This policy example relies on implied prohibition. Allowance of parking for
-    commercial vehicles during the designated `time_span` implies that other vehicles
+    commercial vehicles during the designated `time_spans` implies that other vehicles
     cannot park in zones covered by this sign.
 
 ## Combined Zone Examples
@@ -137,13 +137,13 @@ this sign is as follows, listed with the most important policy first:
       {
         "name": "No parking during snow emergencies",
         "priority": 1,
-        "rules": [{ "activity": "no_parking" }],
+        "rules": [{ "activity": "no parking" }],
         "time_spans": [{"designated_period": "snow emergency"}]
       },
       {
         "name": "No parking on Tuesdays from 12:01 AM to 7 AM",
         "priority": 2,
-        "rules": [{ "activity": "no_parking" }],
+        "rules": [{ "activity": "no parking" }],
         "time_spans": [
           {
             "time_of_day_start": "00:01",
@@ -179,13 +179,13 @@ following policies:
       {
         "name": "No parking during snow emergencies",
         "priority": 1,
-        "rules": [{ "activity": "no_parking" }],
+        "rules": [{ "activity": "no parking" }],
         "time_spans": [{"designated_period": "snow emergency"}]
       },
       {
         "name": "No parking on Tuesdays from 12:01 AM to 7 AM",
         "priority": 2,
-        "rules": [{ "activity": "no_parking" }],
+        "rules": [{ "activity": "no parking" }],
         "time_spans": [
           {
             "time_of_day_start": "00:01",
@@ -196,18 +196,12 @@ following policies:
       {
         "name": "2-hour Parking, 8 AM to 8 PM Except Sunday.",
         "priority": 3,
-        "rules": [{ "activity": "parking" }],
+        "rules": [{ "activity": "parking", "rate": [{ "rate": 200, "rate_unit": "hour" }] }],
         "time_spans": [
           {
             "time_of_day_start": "08:00",
             "time_of_day_end": "20:00",
             "days_of_week": ["mon", "tue", "wed", "thu", "fri", "sat"]
-          }
-        ],
-        "rates": [
-          {
-            "rate": 200,
-            "rate_unit": "hour"
           }
         ]
       },
@@ -238,7 +232,7 @@ includes a snow emergency parking restriction.
       {
         "name": "No parking during snow emergencies",
         "priority": 1,
-        "rules": [{ "activity": "no_parking" }],
+        "rules": [{ "activity": "no parking" }],
         "time_spans": [{"designated_period": "snow emergency"}]
       },
       {
@@ -271,7 +265,7 @@ includes a snow emergency parking restriction.
     ```
 
 
-### Loading Zone from and No Stopping
+### Loading Zone and No Stopping
 
 This pair of signs designates a loading zone for the majority of the day, with 
 no stopping allowed for 2 hours after the loading period ends. Unrestricted 
@@ -305,7 +299,7 @@ below.
       {
         "name": "No stopping for any vehicles from 4 PM to 6 PM, except Saturday and Sunday",
         "priority": 2,
-        "rules": [{ "activity": "no_stopping" }],
+        "rules": [{ "activity": "no stopping" }],
 
         "time_spans": [
           {
@@ -325,5 +319,5 @@ below.
 
 !!! warning "Implied Prohibition"
     This policy example relies on implied prohibition. Allowance of loading 
-    during the designated `time_span` implies that vehicles
+    during the designated `time_spans` implies that vehicles
     cannot perform other activities such as park.
