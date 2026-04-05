@@ -9,6 +9,6 @@ Boston. It also provides details on some aspects of project implementation.
 
 Topics include:
 
-- General Adaptations and Interpretation Notes about CDS
-- Examples of signs and the resulting CDS
-- Discussion of priority assignment
+- [General Adaptations and Interpretation Notes about CDS](adaptations.md)
+- [Examples of signs and the resulting CDS](examples.md)
+- [Discussion of priority assignment](priorities.md)
