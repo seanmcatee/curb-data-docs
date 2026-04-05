@@ -16,18 +16,16 @@ This is accomplished through automated
 interpretation of sign images and conversion of these images to one or more
 **policy** objects that represent rules on a sign.
 
-To fully define activities on each curb, we use a set of catchall policies:
+To fully define activities on each curb, we use catchall policy:
 
 1. A no stopping anytime policy, applied in cases where a blockface has been
 marked through other means such as lane marking analysis to be a travel lane.
 2. An unrestricted parking policy, applied in all cases but at a lower priority 
 than the no stopping policy. 
 
-To reserve room for further priority refinement, these catchall policies are
-assigned priorities 998 and 999 respectively. Because this document addresses
-policies for curbs with non-travel activities, the catchall no stopping
-policy is not further explored.
-
+These policies are prioritized in a manner consistent with the [prioritization 
+approach](priorities.md). Of note, the unrestricted parking policy is assigned a specific 
+priority value of 99.
 ## Implicit Exclusion
 
 The CDS spec is somewhat vague on the necessity of explicit prohibitions, such

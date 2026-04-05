@@ -30,17 +30,15 @@ when parking is prohibited to allow street cleaning.
 - 60-69: **User-specific allowances** that target one or more user_class or purpose but are 
 not limited to a specific timespan.
 
-- 60-69: **User-specific prohibitions** that target one or more user_class or purpose but are
+- 70-79: **User-specific prohibitions** that target one or more user_class or purpose but are
 not limited to a specific timespan.
 
-- 70-79: **Time-specific General Allowances** that are in effect only for a specific time, but 
+- 80-89: **Time-specific General Allowances** that are in effect only for a specific time, but 
 that do not target a specific user_class or purpose.
 
-- 80-89: Blanket allowances that apply to all users during all timespans. (excludes 
-catchall unrestricted parking.)
-
-- 99: Catchall unrestricted parking allowance that allows parking for all vehicles and time 
-spans, and that does not include any restrictions such as max_stay.
+- 90-99: Blanket allowances that apply to all users during all timespans. The catchall 
+unrestricted parking allowance that allows parking for all vehicles and time 
+spans uses a priority value of 99.
 
 
 !!! warning "Temporary Parking"
