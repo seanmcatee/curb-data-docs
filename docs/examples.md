@@ -30,7 +30,7 @@ all user classes and the sign is represented by a policy with the following rule
     ```json
     {
       "name": "Parking allowed, 30 minute max stay",
-      "priority": 1,
+      "priority": 90,
       "rules": [
         {
           "activity": "parking",
@@ -55,6 +55,7 @@ rule:
     ```json
     {
       "name": "No Parking, Tue & Thur from 2 AM to 6 AM",
+      "priority": 30,
       "rules": [
         {
           "activity": "no parking"
@@ -84,7 +85,7 @@ to 30 minutes. This sign can be represented by one policy with a single rule:
     ```json
     {
       "name":"Parking allowed for commercial vehicles, 7 AM to 7 PM, all days except Sunday",
-      "priority":1,
+      "priority":40,
       "rules": [
         {
           "activity": "parking",
@@ -136,24 +137,25 @@ this sign is as follows, listed with the most important policy first:
     [
       {
         "name": "No parking during snow emergencies",
-        "priority": 1,
+        "priority": 30,
         "rules": [{ "activity": "no parking" }],
         "time_spans": [{"designated_period": "snow emergency"}]
       },
       {
         "name": "No parking on Tuesdays from 12:01 AM to 7 AM",
-        "priority": 2,
+        "priority": 35,
         "rules": [{ "activity": "no parking" }],
         "time_spans": [
           {
             "time_of_day_start": "00:01",
-            "time_of_day_end": "07:00"
+            "time_of_day_end": "07:00",
+            "days_of_week": ["tue"],
           }
         ]
       },
       {
         "name": "Unrestricted parking",
-        "priority": 999,
+        "priority": 99,
         "rules": [{ "activity": "parking" }]
       }
     ]
@@ -178,13 +180,13 @@ following policies:
     [
       {
         "name": "No parking during snow emergencies",
-        "priority": 1,
+        "priority": 30,
         "rules": [{ "activity": "no parking" }],
         "time_spans": [{"designated_period": "snow emergency"}]
       },
       {
         "name": "No parking on Tuesdays from 12:01 AM to 7 AM",
-        "priority": 2,
+        "priority": 35,
         "rules": [{ "activity": "no parking" }],
         "time_spans": [
           {
@@ -195,7 +197,7 @@ following policies:
       },
       {
         "name": "2-hour Parking, 8 AM to 8 PM Except Sunday.",
-        "priority": 3,
+        "priority": 80,
         "rules": [{ "activity": "parking", "rate": [{ "rate": 200, "rate_unit": "hour" }] }],
         "time_spans": [
           {
@@ -207,7 +209,7 @@ following policies:
       },
       {
         "name": "Unrestricted parking",
-        "priority": 999,
+        "priority": 99,
         "rules": [{ "activity": "parking" }]
       }
     ]
@@ -231,13 +233,13 @@ includes a snow emergency parking restriction.
     [
       {
         "name": "No parking during snow emergencies",
-        "priority": 1,
+        "priority": 30,
         "rules": [{ "activity": "no parking" }],
         "time_spans": [{"designated_period": "snow emergency"}]
       },
       {
         "name": "2-hour limit except residents, 6 PM to 10 PM Mon-Sat",
-        "priority": 2,
+        "priority": 40,
         "rules": [
           { "activity": "parking", "user_classes": ["resident_permit"] },
 
@@ -258,7 +260,7 @@ includes a snow emergency parking restriction.
       },
       {
         "name": "Unrestricted parking",
-        "priority": 999,
+        "priority": 99,
         "rules": [{ "activity": "parking" }]
       }
     ]
@@ -272,8 +274,8 @@ no stopping allowed for 2 hours after the loading period ends. Unrestricted
 parking is allowed out of the designated times. It can be represented by the policies
 below.
 
-1. Loading allowed for all vehicles from 7 AM to 4 PM.
-2. No stopping for any vehicles from 4 PM to 6 PM, except Saturday and Sunday.
+1. No stopping for any vehicles from 4 PM to 6 PM, except Saturday and Sunday.
+2. Loading allowed for all vehicles from 7 AM to 4 PM, 30 minute max.
 3. Unrestricted parking.
 
 ![Loading zone with no stopping after loading completes](images/loading-zone.png)
@@ -283,8 +285,21 @@ below.
     ```json
     [
       {
-        "name": "Loading allowed for all vehicles from 7 AM to 4 PM",
-        "priority": 1,
+        "name": "No stopping for any vehicles from 4 PM to 6 PM, except Saturday and Sunday",
+        "priority": 30,
+        "rules": [{ "activity": "no stopping" }],
+
+        "time_spans": [
+          {
+            "time_of_day_start": "16:00",
+            "time_of_day_end": "18:00",
+            "days_of_week": ["mon", "tue", "wed", "thu", "fri"]
+          }
+        ]
+      },
+      {
+        "name": "Loading allowed for all vehicles from 7 AM to 4 PM, 30 minute max",
+        "priority": 40,
         "rules": [
           { "activity": "loading", "max_stay": 30, "max_stay_unit": "minute" }
         ],
@@ -297,21 +312,8 @@ below.
         ]
       },
       {
-        "name": "No stopping for any vehicles from 4 PM to 6 PM, except Saturday and Sunday",
-        "priority": 2,
-        "rules": [{ "activity": "no stopping" }],
-
-        "time_spans": [
-          {
-            "time_of_day_start": "16:00",
-            "time_of_day_end": "18:00",
-            "days_of_week": ["mon", "tue", "wed", "thu", "fri"]
-          }
-        ]
-      },
-      {
         "name": "Unrestricted parking",
-        "priority": 999,
+        "priority": 99,
         "rules": [{ "activity": "parking" }]
       }
     ]
