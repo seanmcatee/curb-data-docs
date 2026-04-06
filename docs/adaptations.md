@@ -27,14 +27,13 @@ These policies are prioritized in a manner consistent with the [prioritization
 approach](priorities.md). Of note, the unrestricted parking policy is assigned a specific 
 priority value of 99.
 
-## Implicit Exclusion
+## Restrictive Interpretation
 
-The CDS spec is unclear on the necessity of explicit prohibitions, such
-as if an allowance with limited scope implicitly prohibits users and activities
-outside of that scope from using a curb zone. For example, a
-policy that allows 30-minute commercial vehicle parking only between 6:00 and 10:00 am
-and allows unrestricted parking at other times might be
-represented by the example below:
+The Boston implementation takes a "restrictive" view of the CDS spec. Each Zone's policies fully define the set of activities that are allowed at a given time, for whom, and under what conditions. If a user (or users) may perform an activity, this should expressly permitted by a specific policy. Policies allowing an activity may be overridden by negative policies at a higher priority.
+
+For example, a policy that allows 30-minute commercial vehicle parking only between 
+6:00 and 10:00 am and allows unrestricted parking at other times might be represented by 
+the example below:
 
 ```json
 [
@@ -68,8 +67,9 @@ represented by the example below:
 ]
 ```
 
-Alternately, the approach below could be necessary to explicitly prohibit
-parking by non-commercial vehicles during the specified timeframe.
+Alternately, a more "permissive" interpretation would assume that curb uses are generally
+permitted unless otherwise prohibited, or subject to conditions (e.g. a rate, time limit, etc). In such a case, the below formulation could be necessary to explicitly prohibit
+parking by non-commercial vehicles during the specified timeframe. 
 
 ```json
 [
@@ -104,13 +104,12 @@ parking by non-commercial vehicles during the specified timeframe.
 
 ```
 
-For the purposes of Boston's curb inventory, we have asserted that the first
-example is sufficient and that by:
+For the purposes of Boston's curb inventory, we have adopted the restrictive approach.
+Under this approach, the first example is sufficient and that by:
 
 1. Declaring a use allowable for certain vehicle classes, that use is implicitly prohibited 
-for all other vehicle classes, and 
-2. Declaring a use allowable for all vehicle classes, other uses are implicitly prohibited for 
-all vehicle classes.
+for all other vehicle classes (unless otherwise specified), and 
+2. Declaring a use allowable for all vehicle classes, other uses are implicitly prohibited for all vehicle classes.
 
 !!! info "Definitions"
     In the assumptions above, **use** means any activity, purpose, or combination thereof. 
@@ -129,6 +128,8 @@ we have modified `loading` to be defined as follows:
 
 > loading and/or unloading of goods or people; implies that stopping is also permitted.
 
+In addition, the `unloading` and `no unloading` activities are not used, as unloading goods
+and passengers is generally permitted wherever `loading` is allowed.
 
 ## Enumerated Values
 
@@ -158,10 +159,14 @@ encountered in this process. This list includes:
     - rideshare
     - valet
 
+It is assumed that vehicles classified as `moped` or `scooter` are subject to same rules
+as the `motorcycle` class, and so reducing these to a single class results in expressive,
+consice CDS. Otherwise, separate rules would be required for each of the three classes.
+
+HP/DV permit holders are covered by the `accessible` class.
 
 Additional `user_class` values may be added as they are encountered in the
 dataset.
-
 
 ### Purposes
 
@@ -169,12 +174,14 @@ This project is minimizing the `purpose` field, which is specified as
 using an **OR** operator. The values of purpose encountered so far include:
 
 - emergency_use
-- pickup_dropoff (not a CDS well known value)
+- pickup_dropoff (not a CDS well known value, but helps to distinguish PUDO areas)
 
 Examples of use cases where `purpose` is important include:
 
 - School zone pick-up and drop-off only, usually time-limited.
 - Zones reserved for emergency ambulance use.
+
+Hydrant areas are also tagged with the purpose emergency use to help distinguish them.
 
 Purpose is not used to describe allowable activities that are the reason for a
 no-parking regulation, such as street sweeping or temporary construction access.
