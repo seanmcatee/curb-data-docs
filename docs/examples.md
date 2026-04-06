@@ -185,10 +185,9 @@ by this simple policy with one rule:
     }
     ```
 
-!!! warning "Implied Prohibition"
-    This policy example relies on implied prohibition. Allowance of loading 
-    during the designated `time_spans` implies that vehicles
-    cannot perform other activities such as park.
+!!! warning "Restrictive Interpretation"
+    This policy example relies on the restrictive interpretation. During the designated `time_spans`, vehicles may _only_ perform the designated activity, and may not perform
+    other activities such as `parking`.
 
 ## Zone Examples
 
@@ -216,7 +215,22 @@ this sign is as follows, listed with the most important policy first:
         "name": "No parking during snow emergencies",
         "priority": 30,
         "rules": [{ "activity": "no parking" }],
-        "time_spans": [{"designated_period": "snow emergency"}]
+        "time_spans": [
+          {
+            "time_of_day_start": "00:00",
+            "time_of_day_end": "00:00",
+            "days_of_week": [              
+              "sun",
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri",
+              "sat"
+            ],
+            "designated_period": "snow emergency"
+          }
+        ]
       },
       {
         "name": "No parking on Tuesdays from 12:01 AM to 7 AM",
@@ -233,10 +247,25 @@ this sign is as follows, listed with the most important policy first:
       {
         "name": "Unrestricted parking",
         "priority": 99,
-        "rules": [{ "activity": "parking" }]
+        "rules": [{ "activity": "parking" }],
+        "time_spans": [
+          {
+            "time_of_day_start": "00:00",
+            "time_of_day_end": "00:00",
+            "days_of_week": [        
+              "sun",
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri",
+              "sat"
+            ]
+          }
+        ]
       }
     ]
-    ```
+```
 
 ### Metered Parking, with snow zone and street cleaning
 
@@ -259,7 +288,22 @@ following policies:
         "name": "No parking during snow emergencies",
         "priority": 30,
         "rules": [{ "activity": "no parking" }],
-        "time_spans": [{"designated_period": "snow emergency"}]
+        "time_spans": [
+          {
+            "time_of_day_start": "00:00",
+            "time_of_day_end": "00:00",
+            "days_of_week": [              
+              "sun",
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri",
+              "sat"
+            ],
+            "designated_period": "snow emergency"
+          }
+        ]
       },
       {
         "name": "No parking on Tuesdays from 12:01 AM to 7 AM",
@@ -281,14 +325,36 @@ following policies:
           {
             "time_of_day_start": "08:00",
             "time_of_day_end": "20:00",
-            "days_of_week": ["mon", "tue", "wed", "thu", "fri", "sat"]
+            "days_of_week": [
+              "mon", 
+              "tue", 
+              "wed", 
+              "thu", 
+              "fri", 
+              "sat"
+            ]
           }
         ]
       },
       {
         "name": "Unrestricted parking",
         "priority": 99,
-        "rules": [{ "activity": "parking" }]
+        "rules": [{ "activity": "parking" }],
+        "time_spans": [
+          {
+            "time_of_day_start": "08:00",
+            "time_of_day_end": "20:00",
+            "days_of_week": [
+              "sun",
+              "mon", 
+              "tue", 
+              "wed", 
+              "thu", 
+              "fri", 
+              "sat"
+            ]
+          }
+        ]
       }
     ]
     ```
@@ -313,7 +379,22 @@ includes a snow emergency parking restriction.
         "name": "No parking during snow emergencies",
         "priority": 30,
         "rules": [{ "activity": "no parking" }],
-        "time_spans": [{"designated_period": "snow emergency"}]
+        "time_spans": [
+          {
+            "time_of_day_start": "00:00",
+            "time_of_day_end": "00:00",
+            "days_of_week": [              
+              "sun",
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri",
+              "sat"
+            ],
+            "designated_period": "snow emergency"
+          }
+        ]
       },
       {
         "name": "2-hour limit except residents, 6 PM to 10 PM Mon-Sat",
@@ -339,7 +420,22 @@ includes a snow emergency parking restriction.
       {
         "name": "Unrestricted parking",
         "priority": 99,
-        "rules": [{ "activity": "parking" }]
+        "rules": [{ "activity": "parking" }],
+        "time_spans": [
+          {
+            "time_of_day_start": "08:00",
+            "time_of_day_end": "20:00",
+            "days_of_week": [
+              "sun",
+              "mon", 
+              "tue", 
+              "wed", 
+              "thu", 
+              "fri", 
+              "sat"
+            ]
+          }
+        ]
       }
     ]
     ```
@@ -392,12 +488,26 @@ below.
       {
         "name": "Unrestricted parking",
         "priority": 99,
-        "rules": [{ "activity": "parking" }]
+        "rules": [{ "activity": "parking" }],
+        "time_spans": [
+          {
+            "time_of_day_start": "08:00",
+            "time_of_day_end": "20:00",
+            "days_of_week": [
+              "sun",
+              "mon", 
+              "tue", 
+              "wed", 
+              "thu", 
+              "fri", 
+              "sat"
+            ]
+          }
+        ]
       }
     ]
     ```
 
-!!! warning "Implied Prohibition"
-    This policy example relies on implied prohibition. Allowance of loading 
-    during the designated `time_spans` implies that vehicles
-    cannot perform other activities such as park.
+!!! warning "Restrictive Interpretation"
+    This policy example relies on the restrictive interpretation. During the designated `time_spans`, vehicles may _only_ perform the designated activity, and may not perform
+    other activities such as `parking`.

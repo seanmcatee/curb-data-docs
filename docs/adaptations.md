@@ -51,7 +51,8 @@ the example below:
     "time_spans": [
       {
         "time_of_day_start": "06:00",
-        "time_of_day_end": "10:00"
+        "time_of_day_end": "10:00",
+        "days_of_week": ["sun", "mon", "tue", "wed", "thu", "fri", "sat"]
       }
     ]
   },
@@ -60,7 +61,14 @@ the example below:
     "priority": 99,
     "rules": [
       {
-        "activity": "parking"
+        "activity": "parking",
+      }
+    ],
+    "time_spans": [
+      {
+        "time_of_day_start": "00:00",
+        "time_of_day_end": "00:00",
+        "days_of_week": ["sun", "mon", "tue", "wed", "thu", "fri", "sat"]
       }
     ]
   }
@@ -91,14 +99,23 @@ parking by non-commercial vehicles during the specified timeframe.
     "time_spans": [
       {
         "time_of_day_start": "06:00",
-        "time_of_day_end": "10:00"
+        "time_of_day_end": "10:00",
+        "days_of_week": ["sun", "mon", "tue", "wed", "thu", "fri", "sat"]
+
       }
     ]
   },
   {
     "name": "Unrestricted parking",
     "priority": 99,
-    "rules": [{ "activity": "parking" }]
+    "rules": [{ "activity": "parking" }],
+    "time_spans": [
+      {
+        "time_of_day_start": "00:00",
+        "time_of_day_end": "00:00",
+        "days_of_week": ["sun", "mon", "tue", "wed", "thu", "fri", "sat"]
+      }
+    ]
   }
 ]
 
@@ -188,3 +205,25 @@ no-parking regulation, such as street sweeping or temporary construction access.
 
 Additional `purpose` values may be added as they are encountered in the
 dataset.
+
+# Timespans
+Timespans describe which days and times a Policy is in effect. If a Policy applies 24/7,
+CDS permits omitting this field.
+
+The Boston implementation always explicitly includes the following fields, which are the
+most commonly used time-specific fields on parking signage.
+- time_of_day_start
+- time_of_day_end
+- days of week
+
+A policy applying all day uses the time span (midnight to midnight):
+
+```json
+{
+  "time_of_day_start": "00:00",
+  "time_of_day_end": "00:00",
+  "days_of_week": ["sun", "mon", "tue", "wed", "thu", "fri", "sat"]
+}
+```
+While more verbose, this aims to increase the consistency of outputs within an AI-driven 
+inventory framework.
