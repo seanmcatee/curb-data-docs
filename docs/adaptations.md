@@ -36,7 +36,7 @@ different user classes.
 
 Usually, this can be sufficiently accomplished by preferring negative activities to
 limit parking to specific users -- e.g. "No Parking Except EVs" is better than "EV Parking",
-since the latter could be understood as being silent about the remaining user classes.
+since the latter could be understood by some applications as being silent about the remaining user classes. In that case, a lower priority Policy (including the underlying "Unrestricted" Policy) could be identified as containing the applicable regulations for other users.
 
 Multiple rules may required in certain situations for maximum clarity and composability 
 of Policies at different priorities. In situations where Zone is reserved for a specific
