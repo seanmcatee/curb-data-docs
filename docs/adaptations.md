@@ -129,6 +129,8 @@ we have modified `loading` to be defined as follows:
 
 > loading and/or unloading of goods or people; implies that stopping is also permitted.
 
+In addition, the `unloading` and `no unloading` activities are not used, as unloading goods
+and passengers is generally permitted wherever `loading` is allowed.
 
 ## Enumerated Values
 
@@ -158,10 +160,14 @@ encountered in this process. This list includes:
     - rideshare
     - valet
 
+It is assumed that vehicles classified as `moped` or `scooter` are subject to same rules
+as the `motorcycle` class, and so reducing these to a single class results in expressive,
+consice CDS. Otherwise, separate rules would be required for each of the three classes.
+
+HP/DV permit holders are covered by the `accessible` class.
 
 Additional `user_class` values may be added as they are encountered in the
 dataset.
-
 
 ### Purposes
 
@@ -169,15 +175,39 @@ This project is minimizing the `purpose` field, which is specified as
 using an **OR** operator. The values of purpose encountered so far include:
 
 - emergency_use
-- pickup_dropoff (not a CDS well known value)
+- pickup_dropoff (not a CDS well known value, but helps to distinguish PUDO areas)
 
 Examples of use cases where `purpose` is important include:
 
 - School zone pick-up and drop-off only, usually time-limited.
 - Zones reserved for emergency ambulance use.
 
+Hydrant areas are also tagged with the purpose emergency use to help distinguish them.
+
 Purpose is not used to describe allowable activities that are the reason for a
 no-parking regulation, such as street sweeping or temporary construction access.
 
 Additional `purpose` values may be added as they are encountered in the
 dataset.
+
+# Timespans
+Timespans describe which days and times a Policy is in effect. If a Policy applies 24/7,
+CDS permits omitting this field.
+
+The Boston implementation always explicitly includes the following fields, which are the
+most commonly used time-specific fields on parking signage.
+- time_of_day_start
+- time_of_day_end
+- days of week
+
+A policy applying all day uses the time span (midnight to midnight):
+
+```json
+{
+  "time_of_day_start": "00:00",
+  "time_of_day_end": "00:00",
+  "days_of_week": ["sun", "mon", "tue", "wed", "thu", "fri", "sat"]
+}
+```
+While more verbose, this aims to increase the consistency of outputs within an AI-driven 
+inventory framework.

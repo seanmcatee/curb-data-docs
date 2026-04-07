@@ -28,8 +28,3 @@ and adjustment.
 !!! warning "Temporary Parking"
     Temporary parking regulations were not a focus for this study, so prioritization 
     has not been fully explored.
-
-!!! warning "Implicit Exclusions"
-    Use of implicit exclusion may result in few or no instances of time- and/or 
-    user-specific prohibitions, and interactions between allowances and prohibitions 
-    has not been tested without the implicit exclusion assumption.

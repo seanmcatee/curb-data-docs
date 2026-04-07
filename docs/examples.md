@@ -216,7 +216,14 @@ this sign is as follows, listed with the most important policy first:
         "name": "No parking during snow emergencies",
         "priority": 30,
         "rules": [{ "activity": "no parking" }],
-        "time_spans": [{"designated_period": "snow emergency"}]
+        "time_spans": [
+          {
+            "time_of_day_start": "00:00",
+            "time_of_day_end": "00:00",
+            "days_of_week": ["sun", "mon", "tue", "wed", "thu", "fri", "sat"],
+            "designated_period": "snow emergency"
+          }
+        ]
       },
       {
         "name": "No parking on Tuesdays from 12:01 AM to 7 AM",
@@ -233,10 +240,17 @@ this sign is as follows, listed with the most important policy first:
       {
         "name": "Unrestricted parking",
         "priority": 99,
-        "rules": [{ "activity": "parking" }]
+        "rules": [{ "activity": "parking" }],
+        "time_spans": [
+          {
+            "time_of_day_start": "00:00",
+            "time_of_day_end": "00:00",
+            "days_of_week": ["sun", "mon", "tue", "wed", "thu", "fri", "sat"]
+          }
+        ]
       }
     ]
-    ```
+```
 
 ### Metered Parking, with snow zone and street cleaning
 
@@ -259,7 +273,14 @@ following policies:
         "name": "No parking during snow emergencies",
         "priority": 30,
         "rules": [{ "activity": "no parking" }],
-        "time_spans": [{"designated_period": "snow emergency"}]
+        "time_spans": [
+          {
+            "time_of_day_start": "00:00",
+            "time_of_day_end": "00:00",
+            "days_of_week": ["sun", "mon", "tue", "wed", "thu", "fri", "sat"],
+            "designated_period": "snow emergency"
+          }
+        ]
       },
       {
         "name": "No parking on Tuesdays from 12:01 AM to 7 AM",
@@ -288,7 +309,14 @@ following policies:
       {
         "name": "Unrestricted parking",
         "priority": 99,
-        "rules": [{ "activity": "parking" }]
+        "rules": [{ "activity": "parking" }],
+        "time_spans": [
+          {
+            "time_of_day_start": "00:00",
+            "time_of_day_end": "00:00",
+            "days_of_week": ["sun", "mon", "tue", "wed", "thu", "fri", "sat"]
+          }
+        ]
       }
     ]
     ```
@@ -313,7 +341,14 @@ includes a snow emergency parking restriction.
         "name": "No parking during snow emergencies",
         "priority": 30,
         "rules": [{ "activity": "no parking" }],
-        "time_spans": [{"designated_period": "snow emergency"}]
+        "time_spans": [
+          {
+            "time_of_day_start": "00:00",
+            "time_of_day_end": "00:00",
+            "days_of_week": ["sun", "mon", "tue", "wed", "thu", "fri", "sat"],
+            "designated_period": "snow emergency"
+          }
+        ]
       },
       {
         "name": "2-hour limit except residents, 6 PM to 10 PM Mon-Sat",
@@ -339,7 +374,14 @@ includes a snow emergency parking restriction.
       {
         "name": "Unrestricted parking",
         "priority": 99,
-        "rules": [{ "activity": "parking" }]
+        "rules": [{ "activity": "parking" }],
+        "time_spans": [
+          {
+            "time_of_day_start": "00:00",
+            "time_of_day_end": "00:00",
+            "days_of_week": ["sun", "mon", "tue", "wed", "thu", "fri", "sat"]
+          }
+        ]
       }
     ]
     ```
@@ -392,7 +434,14 @@ below.
       {
         "name": "Unrestricted parking",
         "priority": 99,
-        "rules": [{ "activity": "parking" }]
+        "rules": [{ "activity": "parking" }],
+        "time_spans": [
+          {
+            "time_of_day_start": "00:00",
+            "time_of_day_end": "00:00",
+            "days_of_week": ["sun", "mon", "tue", "wed", "thu", "fri", "sat"]
+          }
+        ]
       }
     ]
     ```
