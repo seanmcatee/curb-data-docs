@@ -27,13 +27,14 @@ These policies are prioritized in a manner consistent with the [prioritization
 approach](priorities.md). Of note, the unrestricted parking policy is assigned a specific 
 priority value of 99.
 
-## Restrictive Interpretation
+## Implicit Exclusion
 
-The Boston implementation takes a "restrictive" view of the CDS spec. Each Zone's policies fully define the set of activities that are allowed at a given time, for whom, and under what conditions. If a user (or users) may perform an activity, this should expressly permitted by a specific policy. Policies allowing an activity may be overridden by negative policies at a higher priority.
-
-For example, a policy that allows 30-minute commercial vehicle parking only between 
-6:00 and 10:00 am and allows unrestricted parking at other times might be represented by 
-the example below:
+The CDS spec is unclear on the necessity of explicit prohibitions, such
+as if an allowance with limited scope implicitly prohibits users and activities
+outside of that scope from using a curb zone. For example, a
+policy that allows 30-minute commercial vehicle parking only between 6:00 and 10:00 am
+and allows unrestricted parking at other times might be
+represented by the example below:
 
 ```json
 [
@@ -51,8 +52,7 @@ the example below:
     "time_spans": [
       {
         "time_of_day_start": "06:00",
-        "time_of_day_end": "10:00",
-        "days_of_week": ["sun", "mon", "tue", "wed", "thu", "fri", "sat"]
+        "time_of_day_end": "10:00"
       }
     ]
   },
@@ -61,23 +61,15 @@ the example below:
     "priority": 99,
     "rules": [
       {
-        "activity": "parking",
-      }
-    ],
-    "time_spans": [
-      {
-        "time_of_day_start": "00:00",
-        "time_of_day_end": "00:00",
-        "days_of_week": ["sun", "mon", "tue", "wed", "thu", "fri", "sat"]
+        "activity": "parking"
       }
     ]
   }
 ]
 ```
 
-Alternately, a more "permissive" interpretation would assume that curb uses are generally
-permitted unless otherwise prohibited, or subject to conditions (e.g. a rate, time limit, etc). In such a case, the below formulation could be necessary to explicitly prohibit
-parking by non-commercial vehicles during the specified timeframe. 
+Alternately, the approach below could be necessary to explicitly prohibit
+parking by non-commercial vehicles during the specified timeframe.
 
 ```json
 [
@@ -99,34 +91,26 @@ parking by non-commercial vehicles during the specified timeframe.
     "time_spans": [
       {
         "time_of_day_start": "06:00",
-        "time_of_day_end": "10:00",
-        "days_of_week": ["sun", "mon", "tue", "wed", "thu", "fri", "sat"]
-
+        "time_of_day_end": "10:00"
       }
     ]
   },
   {
     "name": "Unrestricted parking",
     "priority": 99,
-    "rules": [{ "activity": "parking" }],
-    "time_spans": [
-      {
-        "time_of_day_start": "00:00",
-        "time_of_day_end": "00:00",
-        "days_of_week": ["sun", "mon", "tue", "wed", "thu", "fri", "sat"]
-      }
-    ]
+    "rules": [{ "activity": "parking" }]
   }
 ]
 
 ```
 
-For the purposes of Boston's curb inventory, we have adopted the restrictive approach.
-Under this approach, the first example is sufficient and that by:
+For the purposes of Boston's curb inventory, we have asserted that the first
+example is sufficient and that by:
 
 1. Declaring a use allowable for certain vehicle classes, that use is implicitly prohibited 
-for all other vehicle classes (unless otherwise specified), and 
-2. Declaring a use allowable for all vehicle classes, other uses are implicitly prohibited for all vehicle classes.
+for all other vehicle classes, and 
+2. Declaring a use allowable for all vehicle classes, other uses are implicitly prohibited for 
+all vehicle classes.
 
 !!! info "Definitions"
     In the assumptions above, **use** means any activity, purpose, or combination thereof. 
