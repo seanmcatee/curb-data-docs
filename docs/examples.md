@@ -185,9 +185,10 @@ by this simple policy with one rule:
     }
     ```
 
-!!! warning "Restrictive Interpretation"
-    This policy example relies on the restrictive interpretation. During the designated `time_spans`, vehicles may _only_ perform the designated activity, and may not perform
-    other activities such as `parking`.
+!!! warning "Implied Prohibition"
+    This policy example relies on implied prohibition. Allowance of loading 
+    during the designated `time_spans` implies that vehicles
+    cannot perform other activities such as park.
 
 ## Zone Examples
 
@@ -219,15 +220,7 @@ this sign is as follows, listed with the most important policy first:
           {
             "time_of_day_start": "00:00",
             "time_of_day_end": "00:00",
-            "days_of_week": [              
-              "sun",
-              "mon",
-              "tue",
-              "wed",
-              "thu",
-              "fri",
-              "sat"
-            ],
+            "days_of_week": ["sun", "mon", "tue", "wed", "thu", "fri", "sat"],
             "designated_period": "snow emergency"
           }
         ]
@@ -252,15 +245,7 @@ this sign is as follows, listed with the most important policy first:
           {
             "time_of_day_start": "00:00",
             "time_of_day_end": "00:00",
-            "days_of_week": [        
-              "sun",
-              "mon",
-              "tue",
-              "wed",
-              "thu",
-              "fri",
-              "sat"
-            ]
+            "days_of_week": ["sun", "mon", "tue", "wed", "thu", "fri", "sat"]
           }
         ]
       }
@@ -292,15 +277,7 @@ following policies:
           {
             "time_of_day_start": "00:00",
             "time_of_day_end": "00:00",
-            "days_of_week": [              
-              "sun",
-              "mon",
-              "tue",
-              "wed",
-              "thu",
-              "fri",
-              "sat"
-            ],
+            "days_of_week": ["sun", "mon", "tue", "wed", "thu", "fri", "sat"],
             "designated_period": "snow emergency"
           }
         ]
@@ -325,14 +302,7 @@ following policies:
           {
             "time_of_day_start": "08:00",
             "time_of_day_end": "20:00",
-            "days_of_week": [
-              "mon", 
-              "tue", 
-              "wed", 
-              "thu", 
-              "fri", 
-              "sat"
-            ]
+            "days_of_week": ["mon", "tue", "wed", "thu", "fri", "sat"]
           }
         ]
       },
@@ -342,17 +312,9 @@ following policies:
         "rules": [{ "activity": "parking" }],
         "time_spans": [
           {
-            "time_of_day_start": "08:00",
-            "time_of_day_end": "20:00",
-            "days_of_week": [
-              "sun",
-              "mon", 
-              "tue", 
-              "wed", 
-              "thu", 
-              "fri", 
-              "sat"
-            ]
+            "time_of_day_start": "00:00",
+            "time_of_day_end": "00:00",
+            "days_of_week": ["sun", "mon", "tue", "wed", "thu", "fri", "sat"]
           }
         ]
       }
@@ -383,15 +345,7 @@ includes a snow emergency parking restriction.
           {
             "time_of_day_start": "00:00",
             "time_of_day_end": "00:00",
-            "days_of_week": [              
-              "sun",
-              "mon",
-              "tue",
-              "wed",
-              "thu",
-              "fri",
-              "sat"
-            ],
+            "days_of_week": ["sun", "mon", "tue", "wed", "thu", "fri", "sat"],
             "designated_period": "snow emergency"
           }
         ]
@@ -423,17 +377,9 @@ includes a snow emergency parking restriction.
         "rules": [{ "activity": "parking" }],
         "time_spans": [
           {
-            "time_of_day_start": "08:00",
-            "time_of_day_end": "20:00",
-            "days_of_week": [
-              "sun",
-              "mon", 
-              "tue", 
-              "wed", 
-              "thu", 
-              "fri", 
-              "sat"
-            ]
+            "time_of_day_start": "00:00",
+            "time_of_day_end": "00:00",
+            "days_of_week": ["sun", "mon", "tue", "wed", "thu", "fri", "sat"]
           }
         ]
       }
@@ -491,23 +437,16 @@ below.
         "rules": [{ "activity": "parking" }],
         "time_spans": [
           {
-            "time_of_day_start": "08:00",
-            "time_of_day_end": "20:00",
-            "days_of_week": [
-              "sun",
-              "mon", 
-              "tue", 
-              "wed", 
-              "thu", 
-              "fri", 
-              "sat"
-            ]
+            "time_of_day_start": "00:00",
+            "time_of_day_end": "00:00",
+            "days_of_week": ["sun", "mon", "tue", "wed", "thu", "fri", "sat"]
           }
         ]
       }
     ]
     ```
 
-!!! warning "Restrictive Interpretation"
-    This policy example relies on the restrictive interpretation. During the designated `time_spans`, vehicles may _only_ perform the designated activity, and may not perform
-    other activities such as `parking`.
+!!! warning "Implied Prohibition"
+    This policy example relies on implied prohibition. Allowance of loading 
+    during the designated `time_spans` implies that vehicles
+    cannot perform other activities such as park.
