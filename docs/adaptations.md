@@ -27,23 +27,39 @@ These policies are prioritized in a manner consistent with the [prioritization
 approach](priorities.md). Of note, the unrestricted parking policy is assigned a specific 
 priority value of 99.
 
-## Implicit Exclusion
+## Explicit Exclusion
+Applications relying on CDS feeds must be capable of parsing, at a given time, who is 
+allowed to do what within a Curb Zone. To avoid ambiguous interpretations of which 
+Policies or Rules apply to a given user class, the proposed Boston implementation aims 
+to be as explicit as possible about which activities are allowed and prohibited for 
+different user classes.
 
-The CDS spec is unclear on the necessity of explicit prohibitions, such
-as if an allowance with limited scope implicitly prohibits users and activities
-outside of that scope from using a curb zone. For example, a
-policy that allows 30-minute commercial vehicle parking only between 6:00 and 10:00 am
-and allows unrestricted parking at other times might be
+Usually, this can be sufficiently accomplished by preferring negative activities to
+limit parking to specific users -- e.g. "No Parking Except EVs" is better than "EV Parking",
+since the latter could be understood as being silent about the remaining user classes.
+
+Multiple rules may required in certain situations for maximum clarity and composability 
+of Policies at different priorities. In situations where Zone is reserved for a specific
+user class, but subject to specific conditions (such as a rate or time limit), two rules 
+are generally required:
+1. A rule **prohibiting** an activity for all users _except_ the specified user class.
+2. A rule **allowing** that activity for that specific class, along with the conditions
+(CDS is clear that meter rates cannot be attached to negative policies, and "No Parking
+2 Hours Max" makes little sense).
+
+For example, a policy that allows 30-minute commercial vehicle parking only between 
+6:00 am and 10:00 am (Monday-Friday), and allows unrestricted parking at other times might be
 represented by the example below:
 
 ```json
 [
   {
-    "name": "Policy 1 - allows limited commercial vehicle parking",
+    "name": "Policy 1 - Limited commercial vehicle loading",
     "priority": 1,
     "rules": [
+      {"activity": "no loading", "user_classes_except": "commercial_vehicles"},
       {
-        "activity": "parking",
+        "activity": "loading",
         "max_stay": 30,
         "max_stay_unit": "minute",
         "user_classes": ["commercial_vehicle"]
@@ -52,71 +68,25 @@ represented by the example below:
     "time_spans": [
       {
         "time_of_day_start": "06:00",
-        "time_of_day_end": "10:00"
+        "time_of_day_end": "10:00",
+        "days_of_week": ["mon", "tue", "wed", "thu", "fri"]
       }
     ]
   },
   {
     "name": "Unrestricted parking",
     "priority": 99,
-    "rules": [
-      {
-        "activity": "parking"
-      }
-    ]
-  }
-]
-```
-
-Alternately, the approach below could be necessary to explicitly prohibit
-parking by non-commercial vehicles during the specified timeframe.
-
-```json
-[
-  {
-    "name": "Policy 1 - allows limited commercial vehicle parking and prohibits other vehicles from parking",
-    "priority": 1,
-    "rules": [
-      {
-        "activity": "parking",
-        "max_stay": 30,
-        "max_stay_unit": "minute",
-        "user_classes": ["commercial_vehicle"]
-      },
-      {
-        "activity": "no parking",
-        "user_classes_except": ["commercial_vehicle"]
-      }
-    ],
+    "rules": [{"activity": "parking"}],
     "time_spans": [
       {
-        "time_of_day_start": "06:00",
-        "time_of_day_end": "10:00"
+        "time_of_day_start": "00:00",
+        "time_of_day_end": "00:00",
+        "days_of_week": ["sun", "mon", "tue", "wed", "thu", "fri", "sat"]
       }
     ]
-  },
-  {
-    "name": "Unrestricted parking",
-    "priority": 99,
-    "rules": [{ "activity": "parking" }]
   }
 ]
-
 ```
-
-For the purposes of Boston's curb inventory, we have asserted that the first
-example is sufficient and that by:
-
-1. Declaring a use allowable for certain vehicle classes, that use is implicitly prohibited 
-for all other vehicle classes, and 
-2. Declaring a use allowable for all vehicle classes, other uses are implicitly prohibited for 
-all vehicle classes.
-
-!!! info "Definitions"
-    In the assumptions above, **use** means any activity, purpose, or combination thereof. 
-
-    Activities follow the hierarchy defined in CDS. For example, the `parking` activity 
-    includes allowance of stopping and loading.
 
 The remainder of this document relies on these assumptions.
 
