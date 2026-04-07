@@ -109,9 +109,9 @@ to 30 minutes. This sign can be represented by one policy with a single rule:
     ```
 
 !!! warning "Explicit Prohibition"
-    This policy example uses explicit prohibition of loading for non-commercial 
-    vehicles to prevent fallthrough to the catchall unrestricted policy during 
-    this time span. Loading also prohibits parking as directly stated in CDS.
+    This policy explicitly prohibits loading for non-commercial 
+    vehicles during the designated time span to prevent fallthrough to 
+    the catchall unrestricted policy.
 
 ### 2-Hour Parking with Resident Exception
 
@@ -442,6 +442,6 @@ below.
     ```
 
 !!! warning "Explicit Prohibition"
-    This policy example uses explicit prohibition of parking to prevent 
-    fallthrough to the catchall unrestricted policy during 
-    this time span. 
+    This policy set example explicitly prohibits parking for all vehicles during 
+    the designated loading time span to prevent fallthrough to the catchall unrestricted 
+    policy.
