@@ -77,44 +77,41 @@ rule:
 This sign prohibits parking except for commercial vehicles, which is limited
 to 30 minutes. This sign can be represented by one policy with a single rule:
 
-- Parking allowed for commercial vehicles, 7 AM to 7 PM, all days except Sunday.
+- Commercial vehicle loading, 30 minute limit, 7 AM to 7 PM, all days except Sunday.
 
 ![Commercial Vehicle Parking, limit 30 minutes, 7 AM to 7 PM, except Sunday](images/06-cv-limit30min-0700.1900-except.sun-right.jpg)
 
 ??? tip "Detailed Policy JSON"
     ```json
     {
-      "name":"Parking allowed for commercial vehicles, 7 AM to 7 PM, all days except Sunday",
+      "name": "Commercial vehicle loading, 30 minute limit, 7 AM to 7 PM, all days except Sunday",
       "priority": 40,
       "rules": [
         {
-          "activity": "parking",
+          "activity": "loading",
           "max_stay": 30,
           "max_stay_unit": "minute",
           "user_classes": ["commercial_vehicle"]
+        },
+        {
+          "activity": "no loading",
+          "user_classes_except": "commercial_vehicle"
         }
       ],
       "time_spans": [
         {
-          "days_of_week": [
-            "mon",
-            "tue",
-            "wed",
-            "thu",
-            "fri",
-            "sat"
-          ],
           "time_of_day_start": "07:00",
-          "time_of_day_end": "19:00"
+          "time_of_day_end": "19:00",
+          "days_of_week": ["mon", "tue", "wed", "thu", "fri", "sat"]
         }
       ]
     }
     ```
 
-!!! warning "Implied Prohibition"
-    This policy example relies on implied prohibition. Allowance of parking for
-    commercial vehicles during the designated `time_spans` implies that other vehicles
-    cannot park in zones covered by this sign.
+!!! warning "Explicit Prohibition"
+    This policy example uses explicit prohibition of loading for non-commercial 
+    vehicles to prevent fallthrough to the catchall unrestricted policy during 
+    this time span. Loading also prohibits parking as directly stated in CDS.
 
 ### 2-Hour Parking with Resident Exception
 
@@ -134,7 +131,6 @@ represented by one policy with a single rule:
       "priority": 40,
       "rules": [
         { "activity": "parking", "user_classes": ["resident_permit"] },
-
         {
           "activity": "parking",
           "max_stay": 2,
@@ -159,21 +155,22 @@ implementation of CDS, we are using the assertion that the activity `loading` al
 and unloading of both people and goods. With this assumption, this sign can be represented
 by this simple policy with one rule:
 
-- Loading allowed, max stay 15 minutes, 8 AM to 10 PM except Sunday.
+- Loading only, max stay 15 minutes, 8 AM to 10 PM except Sunday.
 
 ![Pick-up/Drop off & Delivery Only Except Sunday, 8 AM to 10 PM](images/pudo-and-delivery.png)
 
 ??? tip "Detailed Policy JSON"
     ```json
     {
-      "name": "Loading allowed, max stay 15 minutes, 8 AM to 10 PM except Sunday",
+      "name": "Loading only, max stay 15 minutes, 8 AM to 10 PM except Sunday",
       "priority": 80,
       "rules": [
         {
           "activity": "loading",
           "max_stay": 15,
           "max_stay_unit": "minute"
-        }
+        },
+        { "activity": "no parking" }
       ],
       "time_spans": [
         {
@@ -185,10 +182,10 @@ by this simple policy with one rule:
     }
     ```
 
-!!! warning "Implied Prohibition"
-    This policy example relies on implied prohibition. Allowance of loading 
-    during the designated `time_spans` implies that vehicles
-    cannot perform other activities such as park.
+!!! warning "Explicit Prohibition"
+    This policy example explicitly prohibits parking for all vehicles during 
+    the designated time span to prevent fallthrough to the catchall unrestricted 
+    policy.
 
 ## Zone Examples
 
@@ -355,7 +352,6 @@ includes a snow emergency parking restriction.
         "priority": 40,
         "rules": [
           { "activity": "parking", "user_classes": ["resident_permit"] },
-
           {
             "activity": "parking",
             "max_stay": 2,
@@ -395,7 +391,7 @@ parking is allowed out of the designated times. It can be represented by the pol
 below.
 
 1. No stopping for any vehicles from 4 PM to 6 PM, except Saturday and Sunday.
-2. Loading allowed for all vehicles from 7 AM to 4 PM, 30 minute max.
+2. Loading only for all vehicles from 7 AM to 4 PM, 30 minute max.
 3. Unrestricted parking.
 
 ![Loading zone with no stopping after loading completes](images/loading-zone.png)
@@ -408,7 +404,6 @@ below.
         "name": "No stopping for any vehicles from 4 PM to 6 PM, except Saturday and Sunday",
         "priority": 30,
         "rules": [{ "activity": "no stopping" }],
-
         "time_spans": [
           {
             "time_of_day_start": "16:00",
@@ -418,12 +413,12 @@ below.
         ]
       },
       {
-        "name": "Loading allowed for all vehicles from 7 AM to 4 PM, 30 minute max",
+        "name": "Loading only for all vehicles from 7 AM to 4 PM, 30 minute max",
         "priority": 80,
         "rules": [
-          { "activity": "loading", "max_stay": 30, "max_stay_unit": "minute" }
+          { "activity": "loading", "max_stay": 30, "max_stay_unit": "minute" },
+          { "activity": "no parking"}
         ],
-
         "time_spans": [
           {
             "time_of_day_start": "07:00",
@@ -446,7 +441,7 @@ below.
     ]
     ```
 
-!!! warning "Implied Prohibition"
-    This policy example relies on implied prohibition. Allowance of loading 
-    during the designated `time_spans` implies that vehicles
-    cannot perform other activities such as park.
+!!! warning "Explicit Prohibition"
+    This policy example uses explicit prohibition of parking to prevent 
+    fallthrough to the catchall unrestricted policy during 
+    this time span. 
