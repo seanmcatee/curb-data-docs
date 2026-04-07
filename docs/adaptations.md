@@ -42,6 +42,7 @@ Multiple rules may required in certain situations for maximum clarity and compos
 of Policies at different priorities. In situations where Zone is reserved for a specific
 user class, but subject to specific conditions (such as a rate or time limit), two rules 
 are generally required:
+
 1. A rule **prohibiting** an activity for all users _except_ the specified user class.
 2. A rule **allowing** that activity for that specific class, along with the conditions
 (CDS is clear that meter rates cannot be attached to negative policies, and "No Parking
